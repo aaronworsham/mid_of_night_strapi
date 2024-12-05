@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiActorActor extends Struct.CollectionTypeSchema {
   collectionName: 'actors';
   info: {
+    description: '';
     displayName: 'Actor';
     pluralName: 'actors';
     singularName: 'actor';
@@ -391,6 +392,7 @@ export interface ApiActorActor extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    threads: Schema.Attribute.Relation<'oneToMany', 'api::thread.thread'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -400,6 +402,7 @@ export interface ApiActorActor extends Struct.CollectionTypeSchema {
 export interface ApiClueClue extends Struct.CollectionTypeSchema {
   collectionName: 'clues';
   info: {
+    description: '';
     displayName: 'Clue';
     pluralName: 'clues';
     singularName: 'clue';
@@ -418,7 +421,7 @@ export interface ApiClueClue extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::clue.clue'> &
       Schema.Attribute.Private;
-    mystery: Schema.Attribute.Relation<'oneToOne', 'api::mystery.mystery'>;
+    mystery: Schema.Attribute.Relation<'manyToOne', 'api::mystery.mystery'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -429,6 +432,7 @@ export interface ApiClueClue extends Struct.CollectionTypeSchema {
 export interface ApiMysteryMystery extends Struct.CollectionTypeSchema {
   collectionName: 'mysteries';
   info: {
+    description: '';
     displayName: 'Mystery';
     pluralName: 'mysteries';
     singularName: 'mystery';
@@ -437,6 +441,7 @@ export interface ApiMysteryMystery extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    clues: Schema.Attribute.Relation<'oneToMany', 'api::clue.clue'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -459,6 +464,7 @@ export interface ApiMysteryMystery extends Struct.CollectionTypeSchema {
 export interface ApiThreadThread extends Struct.CollectionTypeSchema {
   collectionName: 'threads';
   info: {
+    description: '';
     displayName: 'Thread';
     pluralName: 'threads';
     singularName: 'thread';
@@ -467,11 +473,15 @@ export interface ApiThreadThread extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    actor: Schema.Attribute.Relation<'manyToOne', 'api::actor.actor'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.RichText;
     guid: Schema.Attribute.UID;
+    Instructions: Schema.Attribute.DynamicZone<
+      ['thread.notebook-topic-discussed', 'thread.casefile-clue-discovered']
+    >;
     label: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

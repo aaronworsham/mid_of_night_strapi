@@ -4,7 +4,8 @@
   "info": {
     "singularName": "thread",
     "pluralName": "threads",
-    "displayName": "Thread"
+    "displayName": "Thread",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,19 @@
     },
     "description": {
       "type": "richtext"
+    },
+    "actor": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::actor.actor",
+      "inversedBy": "threads"
+    },
+    "Instructions": {
+      "type": "dynamiczone",
+      "components": [
+        "thread.notebook-topic-discussed",
+        "thread.casefile-clue-discovered"
+      ]
     }
   }
 }

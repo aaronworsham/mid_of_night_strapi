@@ -4,7 +4,8 @@
   "info": {
     "singularName": "clue",
     "pluralName": "clues",
-    "displayName": "Clue"
+    "displayName": "Clue",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -27,8 +28,9 @@
     },
     "mystery": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::mystery.mystery"
+      "relation": "manyToOne",
+      "target": "api::mystery.mystery",
+      "inversedBy": "clues"
     }
   }
 }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "mystery",
     "pluralName": "mysteries",
-    "displayName": "Mystery"
+    "displayName": "Mystery",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,12 @@
     },
     "description": {
       "type": "richtext"
+    },
+    "clues": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::clue.clue",
+      "mappedBy": "mystery"
     }
   }
 }
