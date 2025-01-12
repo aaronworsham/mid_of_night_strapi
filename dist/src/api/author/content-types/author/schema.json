@@ -20,9 +20,6 @@
         },
         "label": {
             "type": "string"
-        },
-        "TestFieldDelete": {
-            "type": "string"
         }
     }
 }
