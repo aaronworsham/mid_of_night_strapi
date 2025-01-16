@@ -1,0 +1,44 @@
+{
+    "kind": "collectionType",
+    "collectionName": "actors",
+    "info": {
+        "singularName": "actor",
+        "pluralName": "actors",
+        "displayName": "Actor",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string"
+        },
+        "guid": {
+            "type": "uid"
+        },
+        "xcord": {
+            "type": "decimal"
+        },
+        "ycord": {
+            "type": "decimal"
+        },
+        "portrait": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        },
+        "dialog": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::dialog.dialog"
+        }
+    }
+}
