@@ -384,6 +384,7 @@ export interface ApiActorActor extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    dialog: Schema.Attribute.Relation<'oneToOne', 'api::dialog.dialog'>;
     guid: Schema.Attribute.UID;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::actor.actor'> &
@@ -399,27 +400,27 @@ export interface ApiActorActor extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
-  collectionName: 'authors';
+export interface ApiDialogDialog extends Struct.CollectionTypeSchema {
+  collectionName: 'dialogs';
   info: {
     description: '';
-    displayName: 'Author';
-    pluralName: 'authors';
-    singularName: 'author';
+    displayName: 'Dialog';
+    pluralName: 'dialogs';
+    singularName: 'dialog';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    actor: Schema.Attribute.Relation<'oneToOne', 'api::actor.actor'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     guid: Schema.Attribute.UID;
-    label: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::author.author'
+      'api::dialog.dialog'
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
@@ -940,7 +941,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::actor.actor': ApiActorActor;
-      'api::author.author': ApiAuthorAuthor;
+      'api::dialog.dialog': ApiDialogDialog;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
