@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "dialogs",
+  "collectionName": "threads",
   "info": {
-    "singularName": "dialog",
-    "pluralName": "dialogs",
-    "displayName": "Dialog",
+    "singularName": "thread",
+    "pluralName": "threads",
+    "displayName": "Thread",
     "description": ""
   },
   "options": {
@@ -18,15 +18,15 @@
     "guid": {
       "type": "uid"
     },
+    "dialog": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dialog.dialog"
+    },
     "actor": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::actor.actor"
-    },
-    "threads": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::thread.thread"
     }
   }
 }
