@@ -27,6 +27,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::actor.actor"
+    },
+    "instructions": {
+      "type": "dynamiczone",
+      "components": [
+        "thread-instruction.thread-statement"
+      ]
     }
   }
 }

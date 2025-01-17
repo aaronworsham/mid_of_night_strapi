@@ -450,6 +450,9 @@ export interface ApiThreadThread extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     dialog: Schema.Attribute.Relation<'oneToOne', 'api::dialog.dialog'>;
     guid: Schema.Attribute.UID;
+    instructions: Schema.Attribute.DynamicZone<
+      ['thread-instruction.thread-statement']
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

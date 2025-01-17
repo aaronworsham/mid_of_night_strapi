@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_thread_instruction_thread_statements",
+  "info": {
+    "displayName": "Thread Statement"
+  },
+  "options": {},
+  "attributes": {
+    "copy": {
+      "type": "richtext"
+    }
+  }
+}
