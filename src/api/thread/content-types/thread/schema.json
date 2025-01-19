@@ -31,8 +31,15 @@
     "instructions": {
       "type": "dynamiczone",
       "components": [
-        "thread-instruction.thread-statement"
+        "thread-instruction.thread-statement",
+        "thread-instruction.thread-discovered"
       ]
+    },
+    "starts_discovered": {
+      "type": "boolean"
+    },
+    "label": {
+      "type": "string"
     }
   }
 }

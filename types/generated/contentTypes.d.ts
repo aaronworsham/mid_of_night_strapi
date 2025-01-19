@@ -451,8 +451,12 @@ export interface ApiThreadThread extends Struct.CollectionTypeSchema {
     dialog: Schema.Attribute.Relation<'oneToOne', 'api::dialog.dialog'>;
     guid: Schema.Attribute.UID;
     instructions: Schema.Attribute.DynamicZone<
-      ['thread-instruction.thread-statement']
+      [
+        'thread-instruction.thread-statement',
+        'thread-instruction.thread-discovered',
+      ]
     >;
+    label: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -461,6 +465,7 @@ export interface ApiThreadThread extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    starts_discovered: Schema.Attribute.Boolean;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
