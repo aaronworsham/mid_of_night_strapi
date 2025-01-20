@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_thread_instruction_clue_discovereds",
+  "info": {
+    "displayName": "Clue Discovered",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "clue": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::clue.clue"
+    }
+  }
+}

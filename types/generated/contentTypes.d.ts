@@ -400,6 +400,34 @@ export interface ApiActorActor extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiClueClue extends Struct.CollectionTypeSchema {
+  collectionName: 'clues';
+  info: {
+    description: '';
+    displayName: 'Clue';
+    pluralName: 'clues';
+    singularName: 'clue';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    guid: Schema.Attribute.UID;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::clue.clue'> &
+      Schema.Attribute.Private;
+    mystery: Schema.Attribute.Relation<'manyToOne', 'api::mystery.mystery'>;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDialogDialog extends Struct.CollectionTypeSchema {
   collectionName: 'dialogs';
   info: {
@@ -432,6 +460,68 @@ export interface ApiDialogDialog extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMysteryMystery extends Struct.CollectionTypeSchema {
+  collectionName: 'mysteries';
+  info: {
+    description: '';
+    displayName: 'Mystery';
+    pluralName: 'mysteries';
+    singularName: 'mystery';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    clues: Schema.Attribute.Relation<'oneToMany', 'api::clue.clue'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    guid: Schema.Attribute.UID;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::mystery.mystery'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiResearchTopicResearchTopic
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'research_topics';
+  info: {
+    description: '';
+    displayName: 'Research Topic';
+    pluralName: 'research-topics';
+    singularName: 'research-topic';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    guid: Schema.Attribute.UID;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::research-topic.research-topic'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiThreadThread extends Struct.CollectionTypeSchema {
   collectionName: 'threads';
   info: {
@@ -454,6 +544,9 @@ export interface ApiThreadThread extends Struct.CollectionTypeSchema {
       [
         'thread-instruction.thread-statement',
         'thread-instruction.thread-discovered',
+        'thread-instruction.topic-discovered',
+        'thread-instruction.mystery-discovered',
+        'thread-instruction.clue-discovered',
       ]
     >;
     label: Schema.Attribute.String;
@@ -982,7 +1075,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::actor.actor': ApiActorActor;
+      'api::clue.clue': ApiClueClue;
       'api::dialog.dialog': ApiDialogDialog;
+      'api::mystery.mystery': ApiMysteryMystery;
+      'api::research-topic.research-topic': ApiResearchTopicResearchTopic;
       'api::thread.thread': ApiThreadThread;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

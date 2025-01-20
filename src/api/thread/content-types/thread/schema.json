@@ -32,7 +32,10 @@
       "type": "dynamiczone",
       "components": [
         "thread-instruction.thread-statement",
-        "thread-instruction.thread-discovered"
+        "thread-instruction.thread-discovered",
+        "thread-instruction.topic-discovered",
+        "thread-instruction.mystery-discovered",
+        "thread-instruction.clue-discovered"
       ]
     },
     "starts_discovered": {

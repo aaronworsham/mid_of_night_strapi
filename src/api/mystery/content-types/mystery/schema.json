@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mysteries",
+  "info": {
+    "singularName": "mystery",
+    "pluralName": "mysteries",
+    "displayName": "Mystery",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "guid": {
+      "type": "uid"
+    },
+    "clues": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::clue.clue",
+      "mappedBy": "mystery"
+    }
+  }
+}

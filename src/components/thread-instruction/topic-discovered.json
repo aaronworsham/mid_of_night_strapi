@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_thread_instruction_topic_discovereds",
+  "info": {
+    "displayName": "Topic Discovered"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "research_topic": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::research-topic.research-topic"
+    }
+  }
+}

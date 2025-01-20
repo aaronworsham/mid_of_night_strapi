@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "research_topics",
+  "info": {
+    "singularName": "research-topic",
+    "pluralName": "research-topics",
+    "displayName": "Research Topic",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "guid": {
+      "type": "uid"
+    }
+  }
+}

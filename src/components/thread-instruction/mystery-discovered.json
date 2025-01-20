@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_thread_instruction_mystery_discovereds",
+  "info": {
+    "displayName": "Mystery Discovered"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "mystery": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::mystery.mystery"
+    }
+  }
+}
