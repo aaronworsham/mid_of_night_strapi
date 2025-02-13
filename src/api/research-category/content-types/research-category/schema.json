@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "research_categories",
+  "info": {
+    "singularName": "research-category",
+    "pluralName": "research-categories",
+    "displayName": "Research Category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "guid": {
+      "type": "uid"
+    },
+    "research_topics": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::research-topic.research-topic",
+      "mappedBy": "research_category"
+    }
+  }
+}

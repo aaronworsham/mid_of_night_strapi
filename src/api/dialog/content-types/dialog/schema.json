@@ -26,7 +26,8 @@
     "threads": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::thread.thread"
+      "target": "api::thread.thread",
+      "mappedBy": "dialog"
     }
   }
 }

@@ -491,6 +491,41 @@ export interface ApiMysteryMystery extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiResearchCategoryResearchCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'research_categories';
+  info: {
+    description: '';
+    displayName: 'Research Category';
+    pluralName: 'research-categories';
+    singularName: 'research-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    guid: Schema.Attribute.UID;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::research-category.research-category'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    research_topics: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::research-topic.research-topic'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiResearchTopicResearchTopic
   extends Struct.CollectionTypeSchema {
   collectionName: 'research_topics';
@@ -516,6 +551,10 @@ export interface ApiResearchTopicResearchTopic
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    research_category: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::research-category.research-category'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -538,7 +577,7 @@ export interface ApiThreadThread extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    dialog: Schema.Attribute.Relation<'oneToOne', 'api::dialog.dialog'>;
+    dialog: Schema.Attribute.Relation<'manyToOne', 'api::dialog.dialog'>;
     guid: Schema.Attribute.UID;
     instructions: Schema.Attribute.DynamicZone<
       [
@@ -1078,6 +1117,7 @@ declare module '@strapi/strapi' {
       'api::clue.clue': ApiClueClue;
       'api::dialog.dialog': ApiDialogDialog;
       'api::mystery.mystery': ApiMysteryMystery;
+      'api::research-category.research-category': ApiResearchCategoryResearchCategory;
       'api::research-topic.research-topic': ApiResearchTopicResearchTopic;
       'api::thread.thread': ApiThreadThread;
       'plugin::content-releases.release': PluginContentReleasesRelease;

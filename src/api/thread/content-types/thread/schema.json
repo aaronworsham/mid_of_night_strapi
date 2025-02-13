@@ -18,11 +18,6 @@
     "guid": {
       "type": "uid"
     },
-    "dialog": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::dialog.dialog"
-    },
     "actor": {
       "type": "relation",
       "relation": "oneToOne",
@@ -43,6 +38,12 @@
     },
     "label": {
       "type": "string"
+    },
+    "dialog": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::dialog.dialog",
+      "inversedBy": "threads"
     }
   }
 }

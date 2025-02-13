@@ -17,6 +17,12 @@
     },
     "guid": {
       "type": "uid"
+    },
+    "research_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::research-category.research-category",
+      "inversedBy": "research_topics"
     }
   }
 }
