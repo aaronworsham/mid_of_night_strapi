@@ -1,3 +1,5 @@
+#! /bin/fish
+
 npm run strapi export
 git add *
 git commit -am 'backup'
