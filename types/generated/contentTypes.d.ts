@@ -460,6 +460,36 @@ export interface ApiDialogDialog extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiItemItem extends Struct.CollectionTypeSchema {
+  collectionName: 'items';
+  info: {
+    description: '';
+    displayName: 'Item';
+    pluralName: 'items';
+    singularName: 'item';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    guid: Schema.Attribute.UID;
+    item_portrait: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::item.item'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMysteryMystery extends Struct.CollectionTypeSchema {
   collectionName: 'mysteries';
   info: {
@@ -1116,6 +1146,7 @@ declare module '@strapi/strapi' {
       'api::actor.actor': ApiActorActor;
       'api::clue.clue': ApiClueClue;
       'api::dialog.dialog': ApiDialogDialog;
+      'api::item.item': ApiItemItem;
       'api::mystery.mystery': ApiMysteryMystery;
       'api::research-category.research-category': ApiResearchCategoryResearchCategory;
       'api::research-topic.research-topic': ApiResearchTopicResearchTopic;
